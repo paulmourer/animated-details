@@ -11,22 +11,20 @@
 </template>
 
 <script>
-// eslint-disable-next-line
-let MEASURING_TIMEOUT = null
 export default {
 	mounted() {
 		this.setDetailsHeight()
 		window.addEventListener('resize', this.debouncedSetDetailsHeight)
 	},
 	beforeUnmount() {
-		clearTimeout(MEASURING_TIMEOUT)
+		clearTimeout(this.MEASURING_TIMEOUT)
 		window.removeEventListener('resize', this.debouncedSetDetailsHeight)
 	},
 	methods: {
 		debouncedSetDetailsHeight() {
 			const self = this
-			if (MEASURING_TIMEOUT) clearTimeout(MEASURING_TIMEOUT)
-			MEASURING_TIMEOUT = setTimeout(() => {
+			if (this.MEASURING_TIMEOUT) clearTimeout(this.MEASURING_TIMEOUT)
+			this.MEASURING_TIMEOUT = setTimeout(() => {
 				self.setDetailsHeight.apply(self)
 			}, 300)
 		},
@@ -47,7 +45,8 @@ export default {
 			content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 			PX_PER_SEC: 300,
 			measuring: false,
-			finalHeight: 0
+			finalHeight: 0,
+			MEASURING_TIMEOUT: null
 		}
 	},
 	computed: {
