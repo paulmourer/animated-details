@@ -28,14 +28,15 @@ export default {
 			if (MEASURING_TIMEOUT) clearTimeout(MEASURING_TIMEOUT)
 			MEASURING_TIMEOUT = setTimeout(() => {
 				self.setDetailsHeight.apply(self)
-			}, 1000)
+			}, 300)
 		},
 		setDetailsHeight() {
 			this.measuring = true
+			const isOpen = this.$refs.details.open === true
 			this.$refs.details.open = true
 			this.$nextTick(function () {
 				this.finalHeight = this.$refs.details.getBoundingClientRect().height
-				this.$refs.details.open = false
+				if (!isOpen) this.$refs.details.open = false
 				this.measuring = false
 			})
 		},
