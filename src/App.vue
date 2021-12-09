@@ -2,6 +2,8 @@
   <div id="app">
     <AnimatedDetail/>
     <AnimatedDetail/>
+    <AnimatedDetail/>
+    <AnimatedDetail/>
   </div>
 </template>
 
